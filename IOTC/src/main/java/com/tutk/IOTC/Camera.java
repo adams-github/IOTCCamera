@@ -38,12 +38,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
+import static com.tutk.IOTC.AVAPIs.AV_ER_DATA_NOREADY;
+import static com.tutk.IOTC.AVAPIs.AV_ER_LOSED_THIS_FRAME;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_ADPCM;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_G711A;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_G726;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_MP3;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_PCM;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_SPEEX;
+import static com.tutk.IOTC.AVIOCTRLDEFs.IOTYPE_USER_IPCAM_AUDIOSTART;
+import static com.tutk.IOTC.AVIOCTRLDEFs.IOTYPE_USER_IPCAM_AUDIOSTOP;
 
 public class Camera {
     private static volatile int isCameraInit = 0;
@@ -2048,24 +2052,24 @@ public class Camera {
             int nCodecId = 0;
             int nFPS = 0;
             if (this.isStart && Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
-                this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), 768, Packet.intToByteArray_Little(Camera.this.m));
+                this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), IOTYPE_USER_IPCAM_AUDIOSTART, Packet.intToByteArray_Little(Camera.this.m));
             }
 
             while(this.isStart) {
                 if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                     this.ret = AVAPIs.avRecvAudioData(this.channelInfo.getAvIndex(), recvBuf, recvBuf.length, bytAVFrame, 24, pFrmNo);
-                    if (this.ret < 0 && this.ret != -20012) {
+                    if (this.ret < 0 && this.ret != AV_ER_DATA_NOREADY) {
                         MLog.i("IOTCamera", "avRecvAudioData < 0");
                     }
 
                     if (this.ret <= 0) {
-                        if (this.ret == -20012) {
+                        if (this.ret == AV_ER_DATA_NOREADY) {
                             try {
                                 Thread.sleep((long)(nFPS == 0 ? 33 : 1000 / nFPS));
                             } catch (InterruptedException var21) {
                                 var21.printStackTrace();
                             }
-                        } else if (this.ret == -20014) {
+                        } else if (this.ret == AV_ER_LOSED_THIS_FRAME) {
                             MLog.i("IOTCamera", "avRecvAudioData returns AV_ER_LOSED_THIS_FRAME");
                         } else {
                             try {
@@ -2133,7 +2137,7 @@ public class Camera {
                 Camera.this.a(nCodecId);
             }
 
-            this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), 769, Packet.intToByteArray_Little(Camera.this.m));
+            this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), IOTYPE_USER_IPCAM_AUDIOSTOP, Packet.intToByteArray_Little(Camera.this.m));
             MLog.i("IOTCamera", "===ThreadRecvAudio exit===");
         }
     }
@@ -2705,6 +2709,7 @@ public class Camera {
                     nServType[0] = -1L;
                     int avIndex;
                     if (Camera.this.getSessionMode() == 2) {
+                        //30L：timeout_sec
                         avIndex = AVAPIs.avClientStart(Camera.this.nIOTCSessionID, this.channelInfo.getView_acc(), this.channelInfo.getView_pwd(), 30L, nServType, this.channelInfo.getChannel());
                     } else {
                         avIndex = AVAPIs.avClientStart2(Camera.this.nIOTCSessionID, this.channelInfo.getView_acc(), this.channelInfo.getView_pwd(), 30L, nServType, this.channelInfo.getChannel(), mResend);
