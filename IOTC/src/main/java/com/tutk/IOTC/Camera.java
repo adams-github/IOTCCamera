@@ -38,6 +38,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_ADPCM;
+
 public class Camera {
     private static volatile int isCameraInit = 0;
     private static int maxCameraLimit = 8;
@@ -69,8 +71,8 @@ public class Camera {
     private boolean k = false;
     private AudioTrack audioTrack = null;//音频播放器
     private int m = 0;
-    private boolean n;
-    private String o;
+    private boolean isStartRecordVideo;
+    private String mp4Name;
     private int frameRate;
     private int q = 0;
     private int r = 0;
@@ -797,12 +799,12 @@ public class Camera {
     }
 
     public void StartRecordvideo(String mp4Name) {
-        this.n = true;
-        this.o = mp4Name;
+        this.isStartRecordVideo = true;
+        this.mp4Name = mp4Name;
     }
 
     public void StopRecordvideo() {
-        this.n = false;
+        this.isStartRecordVideo = false;
     }
 
     public int getDispFrmPreSec() {
@@ -1159,7 +1161,7 @@ public class Camera {
         private long serviceType = -1L;
         private String view_acc;
         private String view_pwd;
-        private int v;
+        private int audioCodecId;//数据类型
         public Camera.IOCtrlQueue ioCtrlQueue;
         public AVFrameContainer videoAVFrameContainer;
         public AVFrameContainer audioAVFrameContainer;
@@ -1205,17 +1207,17 @@ public class Camera {
             return this.serviceType;
         }
 
-        public synchronized int d() {
-            return this.v;
+        public synchronized int getCodecId() {
+            return this.audioCodecId;
         }
 
-        public synchronized void b(int codec) {
-            this.v = codec;
+        public synchronized void setCodecId(int codec) {
+            this.audioCodecId = codec;
         }
 
         public synchronized void setServiceType(long serviceType) {
             this.serviceType = serviceType;
-            this.v = (serviceType & 4096L) == 0L ? 138 : 138;
+            this.audioCodecId = (serviceType & 4096L) == 0L ? AVFrame.MEDIA_CODEC_AUDIO_G711A : AVFrame.MEDIA_CODEC_AUDIO_G711A;
         }
 
         public String getView_acc() {
@@ -1688,24 +1690,24 @@ public class Camera {
                                     }
 
                                     DecH264.DecoderNal(avFrame.frmData, avFrameSizex, framePara, bufOut, mEnableDither);
-                                    if (Camera.this.n) {
+                                    if (Camera.this.isStartRecordVideo) {
                                         if (mp4StartFlag && bInitMp4Record) {
                                             int isKeyframe = avFrame.isIFrame() ? 1 : 0;
                                             H264toMP4.mp4packvideo(avFrame.frmData, avFrameSizex, isKeyframe, Camera.this.frameRate);
-                                        } else if (avFrame.isIFrame() && !bInitMp4Record && Camera.this.frameRate > 0 && Camera.this.o.length() > 0) {
-                                            if (H264toMP4.mp4init(Camera.this.o, videoWidth, videoHeight) == 1) {
-                                                MLog.i(" mp4 video", "mp4 filename[" + Camera.this.o + "]" + "width[" + videoWidth + "]height" + videoHeight);
+                                        } else if (avFrame.isIFrame() && !bInitMp4Record && Camera.this.frameRate > 0 && Camera.this.mp4Name.length() > 0) {
+                                            if (H264toMP4.mp4init(Camera.this.mp4Name, videoWidth, videoHeight) == 1) {
+                                                MLog.i(" mp4 video", "mp4 filename[" + Camera.this.mp4Name + "]" + "width[" + videoWidth + "]height" + videoHeight);
                                                 bInitMp4Record = true;
                                                 H264toMP4.mp4packvideo(avFrame.frmData, avFrameSizex, 1, Camera.this.frameRate);
                                                 mp4StartFlag = true;
                                             } else {
                                                 bInitMp4Record = false;
-                                                MLog.i("Tutk mp4 video", "mp4 error filename[" + Camera.this.o + "]" + "width[" + videoWidth + "]height" + videoHeight);
+                                                MLog.i("Tutk mp4 video", "mp4 error filename[" + Camera.this.mp4Name + "]" + "width[" + videoWidth + "]height" + videoHeight);
                                             }
                                         }
                                     }
 
-                                    if (bInitMp4Record && !Camera.this.n) {
+                                    if (bInitMp4Record && !Camera.this.isStartRecordVideo) {
                                         H264toMP4.mp4close();
                                         bInitMp4Record = false;
                                         mp4StartFlag = false;
@@ -2194,7 +2196,7 @@ public class Camera {
                             while(var9.hasNext()) {
                                 Camera.ChannelInfo ch = (Camera.ChannelInfo)var9.next();
                                 if (ch.getChannel() == channel) {
-                                    ch.b(format);
+                                    ch.setCodecId(format);
                                     break;
                                 }
                             }
@@ -2453,34 +2455,34 @@ public class Camera {
                     }
 
                     MLog.i("IOTCamera", "avServerStart(" + Camera.this.nIOTCSessionID + ", " + this.d + ") : " + this.c);
-                    if (this.b && this.channelInfo.d() == 141) {
+                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_SPEEX) {
                         EncSpeex.InitEncoder(8);
                         bInitSpeexEnc = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
                         MLog.i("IOTCamera", "Speex encoder init");
                     }
 
-                    if (this.b && this.channelInfo.d() == 139) {
+                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_ADPCM) {
                         EncADPCM.ResetEncoder();
                         bInitADPCM = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
                         MLog.i("IOTCamera", "ADPCM encoder init");
                     }
 
-                    if (this.b && this.channelInfo.d() == 143) {
+                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_G726) {
                         EncG726.g726_enc_state_create((byte)0, (byte)2);
                         bInitG726Enc = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
                         MLog.i("IOTCamera", "G726 encoder init");
                     }
 
-                    if (this.b && this.channelInfo.d() == 138) {
+                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_G711A) {
                         bInitG711 = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
                         MLog.i("IOTCamera", "G711 encoder init");
                     }
 
-                    if (this.b && this.channelInfo.d() == 140) {
+                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_PCM) {
                         bInitPCM = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
                     }
@@ -2504,46 +2506,46 @@ public class Camera {
 
                     while(this.b) {
                         int nReadBytes;
-                        if (this.channelInfo.d() == 141) {
+                        if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_SPEEX) {
                             nReadBytes = recorder.read(inSpeexBuf, 0, inSpeexBuf.length);
                             if (nReadBytes > 0) {
                                 int len = EncSpeex.Encode(inSpeexBuf, nReadBytes, outSpeexBuf);
                                 byte flagx = 2;
-                                byte[] frameInfox = SFrameInfo.parseContent((short)141, flagx, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                byte[] frameInfox = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_SPEEX, flagx, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                 AVAPIs.avSendAudioData(this.c, outSpeexBuf, len, frameInfox, 16);
                             }
                         } else {
                             byte flag;
                             byte[] frameInfo;
-                            if (this.channelInfo.d() == 139) {
+                            if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_ADPCM) {
                                 nReadBytes = recorder.read(inADPCMBuf, 0, inADPCMBuf.length);
                                 if (nReadBytes > 0) {
                                     EncADPCM.Encode(inADPCMBuf, nReadBytes, outADPCMBuf);
                                     flag = 2;
-                                    frameInfo = SFrameInfo.parseContent((short)139, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                    frameInfo = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_ADPCM, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                     AVAPIs.avSendAudioData(this.c, outADPCMBuf, nReadBytes / 4, frameInfo, 16);
                                 }
-                            } else if (this.channelInfo.d() == 143) {
+                            } else if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_G726) {
                                 nReadBytes = recorder.read(inG726Buf, 0, inG726Buf.length);
                                 if (nReadBytes > 0) {
                                     EncG726.g726_encode(inG726Buf, (long)nReadBytes, outG726Buf, outG726BufLen);
                                     flag = 2;
-                                    frameInfo = SFrameInfo.parseContent((short)143, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                    frameInfo = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_G726, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                     AVAPIs.avSendAudioData(this.c, outG726Buf, (int)outG726BufLen[0], frameInfo, 16);
                                 }
-                            } else if (this.channelInfo.d() == 140) {
+                            } else if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_PCM) {
                                 nReadBytes = recorder.read(inPCMBuf, 0, inPCMBuf.length);
                                 if (nReadBytes > 0) {
                                     flag = 2;
-                                    frameInfo = SFrameInfo.parseContent((short)140, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                    frameInfo = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_PCM, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                     AVAPIs.avSendAudioData(this.c, inPCMBuf, nReadBytes, frameInfo, 16);
                                 }
-                            } else if (this.channelInfo.d() == 138) {
+                            } else if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_G711A) {
                                 nReadBytes = recorder.read(inG711Buf, 0, inG711Buf.length);
                                 if (nReadBytes > 0) {
                                     PCMA.linear2alaw(inG711Buf, 0, outG711Buf, nReadBytes);
                                     flag = 2;
-                                    frameInfo = SFrameInfo.parseContent((short)138, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                    frameInfo = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_G711A, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                     AVAPIs.avSendAudioData(this.c, outG711Buf, nReadBytes, frameInfo, 16);
                                 }
                             }
