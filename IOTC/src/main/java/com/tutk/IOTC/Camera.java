@@ -39,6 +39,11 @@ import java.util.List;
 import java.util.Vector;
 
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_ADPCM;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_G711A;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_G726;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_MP3;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_PCM;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_SPEEX;
 
 public class Camera {
     private static volatile int isCameraInit = 0;
@@ -1217,7 +1222,7 @@ public class Camera {
 
         public synchronized void setServiceType(long serviceType) {
             this.serviceType = serviceType;
-            this.audioCodecId = (serviceType & 4096L) == 0L ? AVFrame.MEDIA_CODEC_AUDIO_G711A : AVFrame.MEDIA_CODEC_AUDIO_G711A;
+            this.audioCodecId = (serviceType & 4096L) == 0L ? MEDIA_CODEC_AUDIO_G711A : MEDIA_CODEC_AUDIO_G711A;
         }
 
         public String getView_acc() {
@@ -2001,7 +2006,7 @@ public class Camera {
     private class g extends Thread {
         private final int b = 1280;
         private int ret = 0;
-        private boolean d = false;
+        private boolean isStart = false;
         private Camera.ChannelInfo channelInfo;
 
         public g(Camera.ChannelInfo channel) {
@@ -2009,13 +2014,13 @@ public class Camera {
         }
 
         public void a() {
-            this.d = false;
+            this.isStart = false;
         }
 
         public void run() {
-            this.d = true;
+            this.isStart = true;
 
-            while(this.d && (Camera.this.nIOTCSessionID < 0 || this.channelInfo.getAvIndex() < 0)) {
+            while(this.isStart && (Camera.this.nIOTCSessionID < 0 || this.channelInfo.getAvIndex() < 0)) {
                 try {
                     synchronized(Camera.this.c) {
                         Camera.this.c.wait(100L);
@@ -2042,11 +2047,11 @@ public class Camera {
             int nChannel = 1;
             int nCodecId = 0;
             int nFPS = 0;
-            if (this.d && Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
+            if (this.isStart && Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                 this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), 768, Packet.intToByteArray_Little(Camera.this.m));
             }
 
-            while(this.d) {
+            while(this.isStart) {
                 if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                     this.ret = AVAPIs.avRecvAudioData(this.channelInfo.getAvIndex(), recvBuf, recvBuf.length, bytAVFrame, 24, pFrmNo);
                     if (this.ret < 0 && this.ret != -20012) {
@@ -2077,19 +2082,19 @@ public class Camera {
                         System.arraycopy(recvBuf, 0, frameData, 0, this.ret);
                         AVFrame frame = new AVFrame((long)pFrmNo[0], (byte)0, bytAVFrame, frameData, this.ret);
                         nCodecId = frame.getCodecId();
-                        if (bFirst && (!Camera.this.k && (nCodecId == 142 || nCodecId == 141 || nCodecId == 139 || nCodecId == 140 || nCodecId == 143) || nCodecId == 138)) {
+                        if (bFirst && (!Camera.this.k && (nCodecId == MEDIA_CODEC_AUDIO_MP3 || nCodecId == MEDIA_CODEC_AUDIO_SPEEX || nCodecId == AVFrame.MEDIA_CODEC_AUDIO_ADPCM || nCodecId == MEDIA_CODEC_AUDIO_PCM || nCodecId == MEDIA_CODEC_AUDIO_G726) || nCodecId == MEDIA_CODEC_AUDIO_G711A)) {
                             bFirst = false;
                             nSamplerate = AVFrame.getSamplerate(frame.getFlags());
                             nDatabits = frame.getFlags() & 2;
                             nDatabits = nDatabits == 2 ? 1 : 0;
                             nChannel = frame.getFlags() & 1;
-                            if (nCodecId == 141) {
+                            if (nCodecId == MEDIA_CODEC_AUDIO_SPEEX) {
                                 nFPS = nSamplerate * (nChannel == 0 ? 1 : 2) * (nDatabits == 0 ? 8 : 16) / 8 / 160;
-                            } else if (nCodecId == 139) {
+                            } else if (nCodecId == MEDIA_CODEC_AUDIO_ADPCM) {
                                 nFPS = nSamplerate * (nChannel == 0 ? 1 : 2) * (nDatabits == 0 ? 8 : 16) / 8 / 640;
-                            } else if (nCodecId == 140) {
+                            } else if (nCodecId == MEDIA_CODEC_AUDIO_PCM) {
                                 nFPS = nSamplerate * (nChannel == 0 ? 1 : 2) * (nDatabits == 0 ? 8 : 16) / 8 / frame.getFrmSize();
-                            } else if (nCodecId == 138) {
+                            } else if (nCodecId == MEDIA_CODEC_AUDIO_G711A) {
                                 nFPS = nSamplerate * (nChannel == 0 ? 1 : 2) * (nDatabits == 0 ? 8 : 16) / 8 / 320;
                             }
 
@@ -2099,24 +2104,24 @@ public class Camera {
                             }
                         }
 
-                        if (nCodecId == 141) {
+                        if (nCodecId == MEDIA_CODEC_AUDIO_SPEEX) {
                             DecSpeex.Decode(recvBuf, this.ret, speexOutBuf);
                             Camera.this.audioTrack.write(speexOutBuf, 0, 160);
-                        } else if (nCodecId == 142) {
+                        } else if (nCodecId == MEDIA_CODEC_AUDIO_MP3) {
                             int len = DecMp3.Decode(recvBuf, this.ret, mp3OutBuf);
                             Camera.this.audioTrack.write(mp3OutBuf, 0, len);
                             nFPS = nSamplerate * (nChannel == 0 ? 1 : 2) * (nDatabits == 0 ? 8 : 16) / 8 / len;
-                        } else if (nCodecId == 139) {
+                        } else if (nCodecId == MEDIA_CODEC_AUDIO_ADPCM) {
                             DecADPCM.Decode(recvBuf, this.ret, adpcmOutBuf);
                             Camera.this.audioTrack.write(adpcmOutBuf, 0, 640);
-                        } else if (nCodecId == 140) {
+                        } else if (nCodecId == MEDIA_CODEC_AUDIO_PCM) {
                             Camera.this.audioTrack.write(recvBuf, 0, this.ret);
-                        } else if (nCodecId == 143) {
+                        } else if (nCodecId == MEDIA_CODEC_AUDIO_G726) {
                             DecG726.g726_decode(recvBuf, (long)this.ret, G726OutBuf, G726OutBufLen);
                             MLog.i("IOTCamera", "G726 decode size:" + G726OutBufLen[0]);
                             Camera.this.audioTrack.write(G726OutBuf, 0, (int)G726OutBufLen[0]);
                             nFPS = nSamplerate * (nChannel == 0 ? 1 : 2) * (nDatabits == 0 ? 8 : 16) / 8 / (int)G726OutBufLen[0];
-                        } else if (nCodecId == 138) {
+                        } else if (nCodecId == MEDIA_CODEC_AUDIO_G711A) {
                             PCMA.alaw2linear(recvBuf, G711OutBuf, this.ret);
                             Camera.this.audioTrack.write(G711OutBuf, 0, this.ret);
                         }
@@ -2455,7 +2460,7 @@ public class Camera {
                     }
 
                     MLog.i("IOTCamera", "avServerStart(" + Camera.this.nIOTCSessionID + ", " + this.d + ") : " + this.c);
-                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_SPEEX) {
+                    if (this.b && this.channelInfo.getCodecId() == MEDIA_CODEC_AUDIO_SPEEX) {
                         EncSpeex.InitEncoder(8);
                         bInitSpeexEnc = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
@@ -2469,20 +2474,20 @@ public class Camera {
                         MLog.i("IOTCamera", "ADPCM encoder init");
                     }
 
-                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_G726) {
+                    if (this.b && this.channelInfo.getCodecId() == MEDIA_CODEC_AUDIO_G726) {
                         EncG726.g726_enc_state_create((byte)0, (byte)2);
                         bInitG726Enc = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
                         MLog.i("IOTCamera", "G726 encoder init");
                     }
 
-                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_G711A) {
+                    if (this.b && this.channelInfo.getCodecId() == MEDIA_CODEC_AUDIO_G711A) {
                         bInitG711 = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
                         MLog.i("IOTCamera", "G711 encoder init");
                     }
 
-                    if (this.b && this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_PCM) {
+                    if (this.b && this.channelInfo.getCodecId() == MEDIA_CODEC_AUDIO_PCM) {
                         bInitPCM = true;
                         nMinBufSize = AudioRecord.getMinBufferSize(8000, 16, 2);
                     }
@@ -2506,12 +2511,12 @@ public class Camera {
 
                     while(this.b) {
                         int nReadBytes;
-                        if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_SPEEX) {
+                        if (this.channelInfo.getCodecId() == MEDIA_CODEC_AUDIO_SPEEX) {
                             nReadBytes = recorder.read(inSpeexBuf, 0, inSpeexBuf.length);
                             if (nReadBytes > 0) {
                                 int len = EncSpeex.Encode(inSpeexBuf, nReadBytes, outSpeexBuf);
                                 byte flagx = 2;
-                                byte[] frameInfox = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_SPEEX, flagx, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                byte[] frameInfox = SFrameInfo.parseContent((short)MEDIA_CODEC_AUDIO_SPEEX, flagx, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                 AVAPIs.avSendAudioData(this.c, outSpeexBuf, len, frameInfox, 16);
                             }
                         } else {
@@ -2525,27 +2530,27 @@ public class Camera {
                                     frameInfo = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_ADPCM, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                     AVAPIs.avSendAudioData(this.c, outADPCMBuf, nReadBytes / 4, frameInfo, 16);
                                 }
-                            } else if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_G726) {
+                            } else if (this.channelInfo.getCodecId() == MEDIA_CODEC_AUDIO_G726) {
                                 nReadBytes = recorder.read(inG726Buf, 0, inG726Buf.length);
                                 if (nReadBytes > 0) {
                                     EncG726.g726_encode(inG726Buf, (long)nReadBytes, outG726Buf, outG726BufLen);
                                     flag = 2;
-                                    frameInfo = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_G726, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                    frameInfo = SFrameInfo.parseContent((short)MEDIA_CODEC_AUDIO_G726, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                     AVAPIs.avSendAudioData(this.c, outG726Buf, (int)outG726BufLen[0], frameInfo, 16);
                                 }
-                            } else if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_PCM) {
+                            } else if (this.channelInfo.getCodecId() == MEDIA_CODEC_AUDIO_PCM) {
                                 nReadBytes = recorder.read(inPCMBuf, 0, inPCMBuf.length);
                                 if (nReadBytes > 0) {
                                     flag = 2;
-                                    frameInfo = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_PCM, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                    frameInfo = SFrameInfo.parseContent((short)MEDIA_CODEC_AUDIO_PCM, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                     AVAPIs.avSendAudioData(this.c, inPCMBuf, nReadBytes, frameInfo, 16);
                                 }
-                            } else if (this.channelInfo.getCodecId() == AVFrame.MEDIA_CODEC_AUDIO_G711A) {
+                            } else if (this.channelInfo.getCodecId() == MEDIA_CODEC_AUDIO_G711A) {
                                 nReadBytes = recorder.read(inG711Buf, 0, inG711Buf.length);
                                 if (nReadBytes > 0) {
                                     PCMA.linear2alaw(inG711Buf, 0, outG711Buf, nReadBytes);
                                     flag = 2;
-                                    frameInfo = SFrameInfo.parseContent((short)AVFrame.MEDIA_CODEC_AUDIO_G711A, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
+                                    frameInfo = SFrameInfo.parseContent((short)MEDIA_CODEC_AUDIO_G711A, flag, (byte)0, (byte)0, (int)System.currentTimeMillis());
                                     AVAPIs.avSendAudioData(this.c, outG711Buf, nReadBytes, frameInfo, 16);
                                 }
                             }
