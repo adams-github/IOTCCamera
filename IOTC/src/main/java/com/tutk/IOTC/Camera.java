@@ -38,6 +38,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
+import static com.tutk.IOTC.AVAPIs.AV_ER_DATA_NOREADY;
+import static com.tutk.IOTC.AVAPIs.AV_ER_LOSED_THIS_FRAME;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_ADPCM;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_VIDEO_H264;
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_VIDEO_MPEG4;
@@ -2051,18 +2053,18 @@ public class Camera {
             while(this.d) {
                 if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                     this.ret = AVAPIs.avRecvAudioData(this.channelInfo.getAvIndex(), recvBuf, recvBuf.length, bytAVFrame, 24, pFrmNo);
-                    if (this.ret < 0 && this.ret != -20012) {
+                    if (this.ret < 0 && this.ret != AV_ER_DATA_NOREADY) {
                         MLog.i("IOTCamera", "avRecvAudioData < 0");
                     }
 
                     if (this.ret <= 0) {
-                        if (this.ret == -20012) {
+                        if (this.ret == AV_ER_DATA_NOREADY) {
                             try {
                                 Thread.sleep((long)(nFPS == 0 ? 33 : 1000 / nFPS));
                             } catch (InterruptedException var21) {
                                 var21.printStackTrace();
                             }
-                        } else if (this.ret == -20014) {
+                        } else if (this.ret == AV_ER_LOSED_THIS_FRAME) {
                             MLog.i("IOTCamera", "avRecvAudioData returns AV_ER_LOSED_THIS_FRAME");
                         } else {
                             try {
