@@ -39,6 +39,8 @@ import java.util.List;
 import java.util.Vector;
 
 import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_ADPCM;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_VIDEO_H264;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_VIDEO_MPEG4;
 
 public class Camera {
     private static volatile int isCameraInit = 0;
@@ -1683,7 +1685,7 @@ public class Camera {
                                 bSkipThisRound = false;
                                 MLog.i("IOTCamera", "decode frame: " + (avFrame.isIFrame() ? "I" : "P") + "delay[" + delayTime + "]");
                                 int i;
-                                if (avFrame.getCodecId() == 78) {
+                                if (avFrame.getCodecId() == MEDIA_CODEC_VIDEO_H264) {
                                     if (!bInitH264) {
                                         DecH264.InitDecoder();
                                         bInitH264 = true;
@@ -1712,7 +1714,7 @@ public class Camera {
                                         bInitMp4Record = false;
                                         mp4StartFlag = false;
                                     }
-                                } else if (avFrame.getCodecId() == 76) {
+                                } else if (avFrame.getCodecId() == MEDIA_CODEC_VIDEO_MPEG4) {
                                     if (!bInitMpeg4) {
                                         w = (avFrame.frmData[23] & 15) << 9 | (avFrame.frmData[24] & 255) << 1 | (avFrame.frmData[25] & 128) >> 7;
                                         i = (avFrame.frmData[25] & 63) << 7 | (avFrame.frmData[26] & 254) >> 1;
@@ -1723,7 +1725,7 @@ public class Camera {
                                     DecMpeg4.Decode(avFrame.frmData, avFrameSizex, bufOut, out_size, out_width, out_height);
                                 }
 
-                                if (avFrame.getCodecId() == 78) {
+                                if (avFrame.getCodecId() == MEDIA_CODEC_VIDEO_H264) {
                                     out_width[0] = framePara[2];
                                     out_height[0] = framePara[3];
                                     out_size[0] = out_width[0] * out_height[0] * 2;
@@ -1732,7 +1734,7 @@ public class Camera {
                                 if (out_size[0] > 0 && out_width[0] > 0 && out_height[0] > 0) {
                                     videoWidth = out_width[0];
                                     videoHeight = out_height[0];
-                                    if (mEnableDither && avFrame.getCodecId() != 76) {
+                                    if (mEnableDither && avFrame.getCodecId() != MEDIA_CODEC_VIDEO_MPEG4) {
                                         bmp = Bitmap.createBitmap(videoWidth, videoHeight, Config.ARGB_8888);
                                     } else {
                                         bmp = Bitmap.createBitmap(videoWidth, videoHeight, Config.RGB_565);
@@ -1841,8 +1843,8 @@ public class Camera {
         private boolean e = false;
         private boolean f = false;
         private Camera.ChannelInfo channelInfo;
-        private String h;
-        private String i;
+        private String localFile;
+        private String remoteFile;
         byte[] a = new byte[1024];
         byte[] b = new byte[2048];
         int c = 0;
@@ -1850,8 +1852,8 @@ public class Camera {
 
         public f(Camera.ChannelInfo channel, String LocalFile, String RemoteFile) {
             this.channelInfo = channel;
-            this.h = LocalFile;
-            this.i = RemoteFile;
+            this.localFile = LocalFile;
+            this.remoteFile = RemoteFile;
         }
 
         public void a() {
@@ -1886,11 +1888,11 @@ public class Camera {
             }
 
             if (RDT_ID >= 0) {
-                MLog.i("=ThreadSendRdFile=", "RDT_start[" + this.i + "]");
+                MLog.i("=ThreadSendRdFile=", "RDT_start[" + this.remoteFile + "]");
 
                 for(; this.e; this.e = false) {
                     if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
-                        byte[] bFileName = this.i.getBytes();
+                        byte[] bFileName = this.remoteFile.getBytes();
                         byte bFileCmdx = 1;
                         bSendRDTCommand[0] = bFileCmdx;
                         System.arraycopy(bFileName, 0, bSendRDTCommand, 1, bFileName.length < 128 ? bFileName.length : 128);
@@ -1931,7 +1933,7 @@ public class Camera {
 
                             FileOutputStream fosLocalFile;
                             try {
-                                fosLocalFile = new FileOutputStream(this.h);
+                                fosLocalFile = new FileOutputStream(this.localFile);
                             } catch (FileNotFoundException var23) {
                                 var23.printStackTrace();
                                 break;
