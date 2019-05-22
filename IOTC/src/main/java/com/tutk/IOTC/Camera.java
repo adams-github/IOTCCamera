@@ -63,18 +63,18 @@ public class Camera {
     private Camera.b e = null;
     private Camera.j f = null;
     private Camera.f g = null;
-    private volatile int h = -1;
+    private volatile int nIOTCSessionID = -1;
     private volatile int sessionMode = -1;
-    private volatile int j;
+    private volatile int sid;
     private boolean k = false;
-    private AudioTrack l = null;
+    private AudioTrack audioTrack = null;//音频播放器
     private int m = 0;
     private boolean n;
     private String o;
-    private int p;
+    private int frameRate;
     private int q = 0;
     private int r = 0;
-    private String s = "";
+    private String uid = "";
     private String t = "";
     private List<IRegisterIOTCListener> iRegisterIOTCListenerList = Collections.synchronizedList(new Vector());
     private List<Camera.ChannelInfo> channelInfoList = Collections.synchronizedList(new Vector());
@@ -189,7 +189,7 @@ public class Camera {
     }
 
     public boolean isSessionConnected() {
-        return this.h >= 0;
+        return this.nIOTCSessionID >= 0;
     }
 
     public boolean isChannelConnected(int avChannel) {
@@ -201,7 +201,7 @@ public class Camera {
             while(var5.hasNext()) {
                 Camera.ChannelInfo ch = (Camera.ChannelInfo)var5.next();
                 if (avChannel == ch.getChannel()) {
-                    result = this.h >= 0 && ch.getAvIndex() >= 0;
+                    result = this.nIOTCSessionID >= 0 && ch.getAvIndex() >= 0;
                     break;
                 }
             }
@@ -226,7 +226,7 @@ public class Camera {
     }
 
     public void connect(String uid) {
-        this.s = uid;
+        this.uid = uid;
         MLog.i("==checklive==", "enterthis  connect");
         if (this.d == null) {
             MLog.i("==checklive==", "enterthis create connect");
@@ -246,7 +246,7 @@ public class Camera {
     }
 
     public void connect(String uid, String pwd) {
-        this.s = uid;
+        this.uid = uid;
         this.t = pwd;
         if (this.d == null) {
             this.d = new Camera.c(1);
@@ -420,10 +420,10 @@ public class Camera {
         }
 
         this.d = null;
-        if (this.h >= 0) {
-            IOTCAPIs.IOTC_Session_Close(this.h);
-            MLog.i("IOTCamera", "IOTC_Session_Close(nSID = " + this.h + ")");
-            this.h = -1;
+        if (this.nIOTCSessionID >= 0) {
+            IOTCAPIs.IOTC_Session_Close(this.nIOTCSessionID);
+            MLog.i("IOTCamera", "IOTC_Session_Close(nSID = " + this.nIOTCSessionID + ")");
+            this.nIOTCSessionID = -1;
         }
 
         this.sessionMode = -1;
@@ -769,7 +769,7 @@ public class Camera {
             for(int i = 0; i < this.channelInfoList.size(); ++i) {
                 Camera.ChannelInfo ch = (Camera.ChannelInfo)this.channelInfoList.get(i);
                 if (avChannel == ch.getChannel()) {
-                    result = ch.d;
+                    result = ch.shotBmp;
                     break;
                 }
             }
@@ -785,8 +785,8 @@ public class Camera {
             for(int i = 0; i < this.channelInfoList.size(); ++i) {
                 Camera.ChannelInfo ch = (Camera.ChannelInfo)this.channelInfoList.get(i);
                 if (avChannel == ch.getChannel()) {
-                    if (ch.e != null) {
-                        result = ch.e;
+                    if (ch.quickShotBmp != null) {
+                        result = ch.quickShotBmp;
                     }
                     break;
                 }
@@ -825,7 +825,7 @@ public class Camera {
             int mMinBufSize = AudioTrack.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
             if (mMinBufSize != -2 && mMinBufSize != -1) {
                 try {
-                    this.l = new AudioTrack(3, sampleRateInHz, channelConfig, audioFormat, mMinBufSize, 1);
+                    this.audioTrack = new AudioTrack(3, sampleRateInHz, channelConfig, audioFormat, mMinBufSize, 1);
                     MLog.i("IOTCamera", "init AudioTrack with SampleRate:" + sampleRateInHz + " " + (dataBit == 1 ? String.valueOf(16) : String.valueOf(8)) + "bit " + (channel == 1 ? "Stereo" : "Mono"));
                 } catch (IllegalArgumentException var9) {
                     var9.printStackTrace();
@@ -845,8 +845,8 @@ public class Camera {
                     DecADPCM.ResetDecoder();
                 }
 
-                this.l.setStereoVolume(1.0F, 1.0F);
-                this.l.play();
+                this.audioTrack.setStereoVolume(1.0F, 1.0F);
+                this.audioTrack.play();
                 this.k = true;
                 return true;
             } else {
@@ -859,10 +859,10 @@ public class Camera {
 
     private synchronized void a(int codec_id) {
         if (this.k) {
-            if (this.l != null) {
-                this.l.stop();
-                this.l.release();
-                this.l = null;
+            if (this.audioTrack != null) {
+                this.audioTrack.stop();
+                this.audioTrack.release();
+                this.audioTrack = null;
             }
 
             if (codec_id == 141) {
@@ -1095,9 +1095,9 @@ public class Camera {
         }
 
         this.d = null;
-        if (this.h >= 0) {
-            IOTCAPIs.IOTC_Session_Close(this.h);
-            this.h = -1;
+        if (this.nIOTCSessionID >= 0) {
+            IOTCAPIs.IOTC_Session_Close(this.nIOTCSessionID);
+            this.nIOTCSessionID = -1;
         }
 
         this.sessionMode = -1;
@@ -1163,10 +1163,10 @@ public class Camera {
         public Camera.IOCtrlQueue ioCtrlQueue;
         public AVFrameContainer videoAVFrameContainer;
         public AVFrameContainer audioAVFrameContainer;
-        public Bitmap d;
-        public Bitmap e;
-        public int f;
-        public int g;
+        public Bitmap shotBmp;
+        public Bitmap quickShotBmp;
+        public int frameRate;
+        public int outBufSize;
         public int h;
         public Camera.l i = null;
         public Camera.h j = null;
@@ -1181,9 +1181,9 @@ public class Camera {
             this.view_acc = view_acc;
             this.view_pwd = view_pwd;
             this.serviceType = -1L;
-            this.f = this.g = this.h = 0;
-            this.d = null;
-            this.e = null;
+            this.frameRate = this.outBufSize = this.h = 0;
+            this.shotBmp = null;
+            this.quickShotBmp = null;
             this.ioCtrlQueue = Camera.this.new IOCtrlQueue();
             this.videoAVFrameContainer = new AVFrameContainer();
             this.audioAVFrameContainer = new AVFrameContainer();
@@ -1309,7 +1309,7 @@ public class Camera {
             St_SInfo stSInfo = new St_SInfo();
             boolean var2 = false;
 
-            while(this.b && Camera.this.h < 0) {
+            while(this.b && Camera.this.nIOTCSessionID < 0) {
                 try {
                     synchronized(Camera.this.c) {
                         Camera.this.c.wait(1000L);
@@ -1322,8 +1322,8 @@ public class Camera {
             while(true) {
                 while(this.b) {
                     Object object;
-                    if (Camera.this.h >= 0) {
-                        int ret = IOTCAPIs.IOTC_Session_Check(Camera.this.h, stSInfo);
+                    if (Camera.this.nIOTCSessionID >= 0) {
+                        int ret = IOTCAPIs.IOTC_Session_Check(Camera.this.nIOTCSessionID, stSInfo);
                         if (ret >= 0) {
                             if (Camera.this.sessionMode == stSInfo.Mode) {
                                 object = this.c;
@@ -1342,7 +1342,7 @@ public class Camera {
                             IRegisterIOTCListener listener;
                             int i;
                             if (ret != -23 && ret != -13) {
-                                MLog.i("IOTCamera", "IOTC_Session_Check(" + Camera.this.h + ") Failed return " + ret);
+                                MLog.i("IOTCamera", "IOTC_Session_Check(" + Camera.this.nIOTCSessionID + ") Failed return " + ret);
 
                                 for(i = 0; i < Camera.this.iRegisterIOTCListenerList.size(); ++i) {
                                     listener = (IRegisterIOTCListener)Camera.this.iRegisterIOTCListenerList.get(i);
@@ -1384,8 +1384,8 @@ public class Camera {
 
         public void a() {
             this.c = false;
-            if (Camera.this.j >= 0) {
-                IOTCAPIs.IOTC_Connect_Stop_BySID(Camera.this.j);
+            if (Camera.this.sid >= 0) {
+                IOTCAPIs.IOTC_Connect_Stop_BySID(Camera.this.sid);
             }
 
             Object var1 = this.d;
@@ -1399,7 +1399,7 @@ public class Camera {
             this.c = true;
 
             label136:
-            while(this.c && Camera.this.h < 0) {
+            while(this.c && Camera.this.nIOTCSessionID < 0) {
                 int i;
                 IRegisterIOTCListener listener;
                 for(i = 0; i < Camera.this.iRegisterIOTCListenerList.size(); ++i) {
@@ -1408,26 +1408,26 @@ public class Camera {
                 }
 
                 if (this.b == 0) {
-                    Camera.this.j = IOTCAPIs.IOTC_Get_SessionID();
-                    if (Camera.this.j >= 0) {
-                        Camera.this.h = IOTCAPIs.IOTC_Connect_ByUID_Parallel(Camera.this.s, Camera.this.j);
+                    Camera.this.sid = IOTCAPIs.IOTC_Get_SessionID();
+                    if (Camera.this.sid >= 0) {
+                        Camera.this.nIOTCSessionID = IOTCAPIs.IOTC_Connect_ByUID_Parallel(Camera.this.uid, Camera.this.sid);
                     }
 
-                    Camera.this.j = -1;
+                    Camera.this.sid = -1;
                 } else {
                     if (this.b != 1) {
                         return;
                     }
 
-                    Camera.this.j = IOTCAPIs.IOTC_Get_SessionID();
-                    if (Camera.this.j >= 0) {
-                        Camera.this.h = IOTCAPIs.IOTC_Connect_ByUID_Parallel(Camera.this.s, Camera.this.j);
+                    Camera.this.sid = IOTCAPIs.IOTC_Get_SessionID();
+                    if (Camera.this.sid >= 0) {
+                        Camera.this.nIOTCSessionID = IOTCAPIs.IOTC_Connect_ByUID_Parallel(Camera.this.uid, Camera.this.sid);
                     }
 
-                    Camera.this.j = -1;
+                    Camera.this.sid = -1;
                 }
 
-                if (Camera.this.h >= 0) {
+                if (Camera.this.nIOTCSessionID >= 0) {
                     for(i = 0; i < Camera.this.iRegisterIOTCListenerList.size(); ++i) {
                         listener = (IRegisterIOTCListener)Camera.this.iRegisterIOTCListenerList.get(i);
                         listener.receiveSessionInfo(Camera.this, 2);
@@ -1436,7 +1436,7 @@ public class Camera {
                     synchronized(Camera.this.c) {
                         Camera.this.c.notify();
                     }
-                } else if (Camera.this.h == -20) {
+                } else if (Camera.this.nIOTCSessionID == -20) {
                     try {
                         Object var11 = this.d;
                         synchronized(this.d) {
@@ -1446,8 +1446,8 @@ public class Camera {
                         var8.printStackTrace();
                     }
                 } else {
-                    if (Camera.this.h != -15 && Camera.this.h != -10 && Camera.this.h != -19 && Camera.this.h != -13) {
-                        if (Camera.this.h == -36 || Camera.this.h == -37) {
+                    if (Camera.this.nIOTCSessionID != -15 && Camera.this.nIOTCSessionID != -10 && Camera.this.nIOTCSessionID != -19 && Camera.this.nIOTCSessionID != -13) {
+                        if (Camera.this.nIOTCSessionID == -36 || Camera.this.nIOTCSessionID == -37) {
                             i = 0;
 
                             while(true) {
@@ -1474,7 +1474,7 @@ public class Camera {
                         }
                     }
 
-                    if (Camera.this.h != -13) {
+                    if (Camera.this.nIOTCSessionID != -13) {
                         for(i = 0; i < Camera.this.iRegisterIOTCListenerList.size(); ++i) {
                             listener = (IRegisterIOTCListener)Camera.this.iRegisterIOTCListenerList.get(i);
                             listener.receiveSessionInfo(Camera.this, 4);
@@ -1624,7 +1624,7 @@ public class Camera {
             boolean bInitMp4Record = false;
             int isKeyframex = -1;
             boolean mp4StartFlag = false;
-            this.channelInfo.f = 0;
+            this.channelInfo.frameRate = 0;
             this.b = true;
             int[] decoFd = new int[1];
             boolean isWaitIframe = false;
@@ -1691,12 +1691,12 @@ public class Camera {
                                     if (Camera.this.n) {
                                         if (mp4StartFlag && bInitMp4Record) {
                                             int isKeyframe = avFrame.isIFrame() ? 1 : 0;
-                                            H264toMP4.mp4packvideo(avFrame.frmData, avFrameSizex, isKeyframe, Camera.this.p);
-                                        } else if (avFrame.isIFrame() && !bInitMp4Record && Camera.this.p > 0 && Camera.this.o.length() > 0) {
+                                            H264toMP4.mp4packvideo(avFrame.frmData, avFrameSizex, isKeyframe, Camera.this.frameRate);
+                                        } else if (avFrame.isIFrame() && !bInitMp4Record && Camera.this.frameRate > 0 && Camera.this.o.length() > 0) {
                                             if (H264toMP4.mp4init(Camera.this.o, videoWidth, videoHeight) == 1) {
                                                 MLog.i(" mp4 video", "mp4 filename[" + Camera.this.o + "]" + "width[" + videoWidth + "]height" + videoHeight);
                                                 bInitMp4Record = true;
-                                                H264toMP4.mp4packvideo(avFrame.frmData, avFrameSizex, 1, Camera.this.p);
+                                                H264toMP4.mp4packvideo(avFrame.frmData, avFrameSizex, 1, Camera.this.frameRate);
                                                 mp4StartFlag = true;
                                             } else {
                                                 bInitMp4Record = false;
@@ -1773,7 +1773,7 @@ public class Camera {
                                         firstTimeStampFromLocal = System.currentTimeMillis();
                                     }
 
-                                    ++this.channelInfo.f;
+                                    ++this.channelInfo.frameRate;
                                     ++Camera.nFlow_total_FPS_count;
                                     ++Camera.nFlow_total_FPS_count_noClear;
                                     Camera.this.q = Camera.this.q + 1;
@@ -1791,7 +1791,7 @@ public class Camera {
                                         }
                                     }
 
-                                    this.channelInfo.d = bmp;
+                                    this.channelInfo.shotBmp = bmp;
                                     now = System.currentTimeMillis();
                                     if (now - lastUpdateDispFrmPreSec > 60000L) {
                                         Camera.this.q = 0;
@@ -1866,7 +1866,7 @@ public class Camera {
             byte[] bRecvRDTCommand = new byte[128];
             byte[] bSendRDTCommand = new byte[128];
 
-            while(this.e && (Camera.this.h < 0 || this.channelInfo.getAvIndex() < 0)) {
+            while(this.e && (Camera.this.nIOTCSessionID < 0 || this.channelInfo.getAvIndex() < 0)) {
                 try {
                     synchronized(Camera.this.c) {
                         Camera.this.c.wait(100L);
@@ -1877,8 +1877,8 @@ public class Camera {
             }
 
             St_RDT_Status status = new St_RDT_Status();
-            MLog.i("=ThreadSendRdFile=", "mSid [" + Camera.this.h + "]");
-            int RDT_ID = RDTAPIs.RDT_Create(Camera.this.h, 30000, 3);
+            MLog.i("=ThreadSendRdFile=", "mSid [" + Camera.this.nIOTCSessionID + "]");
+            int RDT_ID = RDTAPIs.RDT_Create(Camera.this.nIOTCSessionID, 30000, 3);
             if (RDT_ID < 0) {
                 MLog.i("=ThreadSendRdFile=", "RDT_ID < 0[" + RDT_ID + "]");
             }
@@ -1887,7 +1887,7 @@ public class Camera {
                 MLog.i("=ThreadSendRdFile=", "RDT_start[" + this.i + "]");
 
                 for(; this.e; this.e = false) {
-                    if (Camera.this.h >= 0 && this.channelInfo.getAvIndex() >= 0) {
+                    if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                         byte[] bFileName = this.i.getBytes();
                         byte bFileCmdx = 1;
                         bSendRDTCommand[0] = bFileCmdx;
@@ -1998,7 +1998,7 @@ public class Camera {
 
     private class g extends Thread {
         private final int b = 1280;
-        private int c = 0;
+        private int ret = 0;
         private boolean d = false;
         private Camera.ChannelInfo channelInfo;
 
@@ -2013,7 +2013,7 @@ public class Camera {
         public void run() {
             this.d = true;
 
-            while(this.d && (Camera.this.h < 0 || this.channelInfo.getAvIndex() < 0)) {
+            while(this.d && (Camera.this.nIOTCSessionID < 0 || this.channelInfo.getAvIndex() < 0)) {
                 try {
                     synchronized(Camera.this.c) {
                         Camera.this.c.wait(100L);
@@ -2040,25 +2040,25 @@ public class Camera {
             int nChannel = 1;
             int nCodecId = 0;
             int nFPS = 0;
-            if (this.d && Camera.this.h >= 0 && this.channelInfo.getAvIndex() >= 0) {
+            if (this.d && Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                 this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), 768, Packet.intToByteArray_Little(Camera.this.m));
             }
 
             while(this.d) {
-                if (Camera.this.h >= 0 && this.channelInfo.getAvIndex() >= 0) {
-                    this.c = AVAPIs.avRecvAudioData(this.channelInfo.getAvIndex(), recvBuf, recvBuf.length, bytAVFrame, 24, pFrmNo);
-                    if (this.c < 0 && this.c != -20012) {
+                if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
+                    this.ret = AVAPIs.avRecvAudioData(this.channelInfo.getAvIndex(), recvBuf, recvBuf.length, bytAVFrame, 24, pFrmNo);
+                    if (this.ret < 0 && this.ret != -20012) {
                         MLog.i("IOTCamera", "avRecvAudioData < 0");
                     }
 
-                    if (this.c <= 0) {
-                        if (this.c == -20012) {
+                    if (this.ret <= 0) {
+                        if (this.ret == -20012) {
                             try {
                                 Thread.sleep((long)(nFPS == 0 ? 33 : 1000 / nFPS));
                             } catch (InterruptedException var21) {
                                 var21.printStackTrace();
                             }
-                        } else if (this.c == -20014) {
+                        } else if (this.ret == -20014) {
                             MLog.i("IOTCamera", "avRecvAudioData returns AV_ER_LOSED_THIS_FRAME");
                         } else {
                             try {
@@ -2067,13 +2067,13 @@ public class Camera {
                                 var20.printStackTrace();
                             }
 
-                            MLog.i("IOTCamera", "avRecvAudioData returns " + this.c);
+                            MLog.i("IOTCamera", "avRecvAudioData returns " + this.ret);
                         }
                     } else {
-                        this.channelInfo.h += this.c;
-                        byte[] frameData = new byte[this.c];
-                        System.arraycopy(recvBuf, 0, frameData, 0, this.c);
-                        AVFrame frame = new AVFrame((long)pFrmNo[0], (byte)0, bytAVFrame, frameData, this.c);
+                        this.channelInfo.h += this.ret;
+                        byte[] frameData = new byte[this.ret];
+                        System.arraycopy(recvBuf, 0, frameData, 0, this.ret);
+                        AVFrame frame = new AVFrame((long)pFrmNo[0], (byte)0, bytAVFrame, frameData, this.ret);
                         nCodecId = frame.getCodecId();
                         if (bFirst && (!Camera.this.k && (nCodecId == 142 || nCodecId == 141 || nCodecId == 139 || nCodecId == 140 || nCodecId == 143) || nCodecId == 138)) {
                             bFirst = false;
@@ -2098,25 +2098,25 @@ public class Camera {
                         }
 
                         if (nCodecId == 141) {
-                            DecSpeex.Decode(recvBuf, this.c, speexOutBuf);
-                            Camera.this.l.write(speexOutBuf, 0, 160);
+                            DecSpeex.Decode(recvBuf, this.ret, speexOutBuf);
+                            Camera.this.audioTrack.write(speexOutBuf, 0, 160);
                         } else if (nCodecId == 142) {
-                            int len = DecMp3.Decode(recvBuf, this.c, mp3OutBuf);
-                            Camera.this.l.write(mp3OutBuf, 0, len);
+                            int len = DecMp3.Decode(recvBuf, this.ret, mp3OutBuf);
+                            Camera.this.audioTrack.write(mp3OutBuf, 0, len);
                             nFPS = nSamplerate * (nChannel == 0 ? 1 : 2) * (nDatabits == 0 ? 8 : 16) / 8 / len;
                         } else if (nCodecId == 139) {
-                            DecADPCM.Decode(recvBuf, this.c, adpcmOutBuf);
-                            Camera.this.l.write(adpcmOutBuf, 0, 640);
+                            DecADPCM.Decode(recvBuf, this.ret, adpcmOutBuf);
+                            Camera.this.audioTrack.write(adpcmOutBuf, 0, 640);
                         } else if (nCodecId == 140) {
-                            Camera.this.l.write(recvBuf, 0, this.c);
+                            Camera.this.audioTrack.write(recvBuf, 0, this.ret);
                         } else if (nCodecId == 143) {
-                            DecG726.g726_decode(recvBuf, (long)this.c, G726OutBuf, G726OutBufLen);
+                            DecG726.g726_decode(recvBuf, (long)this.ret, G726OutBuf, G726OutBufLen);
                             MLog.i("IOTCamera", "G726 decode size:" + G726OutBufLen[0]);
-                            Camera.this.l.write(G726OutBuf, 0, (int)G726OutBufLen[0]);
+                            Camera.this.audioTrack.write(G726OutBuf, 0, (int)G726OutBufLen[0]);
                             nFPS = nSamplerate * (nChannel == 0 ? 1 : 2) * (nDatabits == 0 ? 8 : 16) / 8 / (int)G726OutBufLen[0];
                         } else if (nCodecId == 138) {
-                            PCMA.alaw2linear(recvBuf, G711OutBuf, this.c);
-                            Camera.this.l.write(G711OutBuf, 0, this.c);
+                            PCMA.alaw2linear(recvBuf, G711OutBuf, this.ret);
+                            Camera.this.audioTrack.write(G711OutBuf, 0, this.ret);
                         }
                     }
                 }
@@ -2155,7 +2155,7 @@ public class Camera {
         public void run() {
             this.c = true;
 
-            while(this.c && (Camera.this.h < 0 || this.channelInfo.getAvIndex() < 0)) {
+            while(this.c && (Camera.this.nIOTCSessionID < 0 || this.channelInfo.getAvIndex() < 0)) {
                 try {
                     synchronized(Camera.this.c) {
                         Camera.this.c.wait(1000L);
@@ -2175,7 +2175,7 @@ public class Camera {
                                 MLog.i("IOTCamera", "===ThreadRecvIOCtrl exit===");
                                 return;
                             }
-                        } while(Camera.this.h < 0);
+                        } while(Camera.this.nIOTCSessionID < 0);
                     } while(this.channelInfo.getAvIndex() < 0);
 
                     int[] ioCtrlType = new int[1];
@@ -2232,7 +2232,7 @@ public class Camera {
             System.gc();
             this.b = true;
 
-            while(this.b && (Camera.this.h < 0 || this.channelInfo.getAvIndex() < 0)) {
+            while(this.b && (Camera.this.nIOTCSessionID < 0 || this.channelInfo.getAvIndex() < 0)) {
                 try {
                     synchronized(Camera.this.c) {
                         Camera.this.c.wait(100L);
@@ -2242,7 +2242,7 @@ public class Camera {
                 }
             }
 
-            this.channelInfo.g = 0;
+            this.channelInfo.outBufSize = 0;
             byte[] buf = new byte[2764800];
             byte[] pFrmInfoBuf = new byte[24];
             int[] pFrmNo = new int[1];
@@ -2257,14 +2257,14 @@ public class Camera {
             int[] outFrmSize = new int[1];
             int[] outFrmInfoBufSize = new int[1];
             int nemptyCount = 0;
-            if (this.b && Camera.this.h >= 0 && this.channelInfo.getAvIndex() >= 0) {
+            if (this.b && Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                 int nDelayTime_ms = 0;
                 this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), 255, Packet.intToByteArray_Little(nDelayTime_ms));
                 this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), 511, Packet.intToByteArray_Little(Camera.this.m));
             }
 
             this.channelInfo.audioAVFrameContainer.clear();
-            if (Camera.this.h >= 0 && this.channelInfo.getAvIndex() >= 0) {
+            if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                 AVAPIs.avClientCleanBuf(this.channelInfo.getAvIndex());
             }
 
@@ -2276,7 +2276,7 @@ public class Camera {
                                 do {
                                     if (!this.b) {
                                         this.channelInfo.videoAVFrameContainer.clear();
-                                        if (Camera.this.h >= 0 && this.channelInfo.getAvIndex() >= 0) {
+                                        if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                                             this.channelInfo.ioCtrlQueue.addData(this.channelInfo.getAvIndex(), 767, Packet.intToByteArray_Little(Camera.this.m));
                                             AVAPIs.avClientCleanBuf(this.channelInfo.getAvIndex());
                                         }
@@ -2284,7 +2284,7 @@ public class Camera {
                                         byte[] bufx = null;
                                         return;
                                     }
-                                } while(Camera.this.h < 0);
+                                } while(Camera.this.nIOTCSessionID < 0);
                             } while(this.channelInfo.getAvIndex() < 0);
 
                             if (System.currentTimeMillis() - lastTimeStamp > 1000L) {
@@ -2292,12 +2292,12 @@ public class Camera {
 
                                 for(int i = 0; i < Camera.this.iRegisterIOTCListenerList.size(); ++i) {
                                     IRegisterIOTCListener listener = (IRegisterIOTCListener)Camera.this.iRegisterIOTCListenerList.get(i);
-                                    listener.receiveFrameInfo(Camera.this, this.channelInfo.getChannel(), (long)((this.channelInfo.h + this.channelInfo.g) * 8 / 1024), this.channelInfo.f, nOnlineNumber, nFrmCount, nIncompleteFrmCount);
+                                    listener.receiveFrameInfo(Camera.this, this.channelInfo.getChannel(), (long)((this.channelInfo.h + this.channelInfo.outBufSize) * 8 / 1024), this.channelInfo.frameRate, nOnlineNumber, nFrmCount, nIncompleteFrmCount);
                                     listener.receiveExtraInfo(Camera.this, this.channelInfo.getChannel(), 3, 0, 1);
                                 }
 
-                                Camera.this.p = this.channelInfo.f;
-                                this.channelInfo.f = this.channelInfo.g = this.channelInfo.h = 0;
+                                Camera.this.frameRate = this.channelInfo.frameRate;
+                                this.channelInfo.frameRate = this.channelInfo.outBufSize = this.channelInfo.h = 0;
                                 Camera var10000 = Camera.this;
                                 Camera.this.q = 0;
                                 var10000.r = 0;
@@ -2309,7 +2309,7 @@ public class Camera {
                             byte[] frameData;
                             AVFrame frame;
                             if (nReadSizex >= 0) {
-                                this.channelInfo.g += outBufSize[0];
+                                this.channelInfo.outBufSize += outBufSize[0];
                                 ++nFrmCount;
                                 Camera.this.q = Camera.this.q + 1;
                                 frameData = new byte[nReadSizex];
@@ -2339,14 +2339,14 @@ public class Camera {
                                 } else if (nCodecIdx == 79) {
                                     Bitmap bmp = BitmapFactory.decodeByteArray(frameData, 0, nReadSizex);
                                     if (bmp != null) {
-                                        ++this.channelInfo.f;
+                                        ++this.channelInfo.frameRate;
 
                                         for(int ix = 0; ix < Camera.this.iRegisterIOTCListenerList.size(); ++ix) {
                                             IRegisterIOTCListener listenerx = (IRegisterIOTCListener)Camera.this.iRegisterIOTCListenerList.get(ix);
                                             listenerx.receiveFrameData(Camera.this, this.channelInfo.getChannel(), bmp);
                                         }
 
-                                        this.channelInfo.d = bmp;
+                                        this.channelInfo.shotBmp = bmp;
                                     }
 
                                     try {
@@ -2376,7 +2376,7 @@ public class Camera {
                                     ++nIncompleteFrmCount;
                                 } else if (nReadSizex == -20013) {
                                     ++nFrmCount;
-                                    this.channelInfo.g += outBufSize[0];
+                                    this.channelInfo.outBufSize += outBufSize[0];
                                     if (outFrmInfoBufSize[0] != 0 && (double)outFrmSize[0] * 0.9D <= (double)outBufSize[0] && pFrmInfoBuf[2] != 0) {
                                         frameData = new byte[outFrmSize[0]];
                                         System.arraycopy(buf, 0, frameData, 0, outFrmSize[0]);
@@ -2420,8 +2420,8 @@ public class Camera {
         }
 
         public void a() {
-            if (Camera.this.h >= 0 && this.d >= 0) {
-                AVAPIs.avServExit(Camera.this.h, this.d);
+            if (Camera.this.nIOTCSessionID >= 0 && this.d >= 0) {
+                AVAPIs.avServExit(Camera.this.nIOTCSessionID, this.d);
                 Camera.this.sendIOCtrl(this.channelInfo.channel, 849, SMsgAVIoctrlAVStream.parseContent(this.d));
             }
 
@@ -2430,7 +2430,7 @@ public class Camera {
 
         public void run() {
             super.run();
-            if (Camera.this.h < 0) {
+            if (Camera.this.nIOTCSessionID < 0) {
                 MLog.i("IOTCamera", "=== ThreadSendAudio exit because SID < 0 ===");
             } else {
                 this.b = true;
@@ -2441,18 +2441,18 @@ public class Camera {
                 boolean bInitG711 = false;
                 int nMinBufSize = 0;
                 int nReadBytesx = -1;
-                this.d = IOTCAPIs.IOTC_Session_Get_Free_Channel(Camera.this.h);
+                this.d = IOTCAPIs.IOTC_Session_Get_Free_Channel(Camera.this.nIOTCSessionID);
                 if (this.d < 0) {
                     MLog.i("IOTCamera", "=== ThreadSendAudio exit becuase no more channel for connection ===");
                 } else {
                     Camera.this.sendIOCtrl(this.channelInfo.channel, 848, SMsgAVIoctrlAVStream.parseContent(this.d));
-                    MLog.i("IOTCamera", "start avServerStart(" + Camera.this.h + ", " + this.d + ")");
+                    MLog.i("IOTCamera", "start avServerStart(" + Camera.this.nIOTCSessionID + ", " + this.d + ")");
 
-                    while(this.b && (this.c = AVAPIs.avServStart(Camera.this.h, (byte[])null, (byte[])null, 60L, 0L, this.d)) < 0) {
-                        MLog.i("IOTCamera", "avServerStart(" + Camera.this.h + ", " + this.d + ") : " + this.c);
+                    while(this.b && (this.c = AVAPIs.avServStart(Camera.this.nIOTCSessionID, (byte[])null, (byte[])null, 60L, 0L, this.d)) < 0) {
+                        MLog.i("IOTCamera", "avServerStart(" + Camera.this.nIOTCSessionID + ", " + this.d + ") : " + this.c);
                     }
 
-                    MLog.i("IOTCamera", "avServerStart(" + Camera.this.h + ", " + this.d + ") : " + this.c);
+                    MLog.i("IOTCamera", "avServerStart(" + Camera.this.nIOTCSessionID + ", " + this.d + ") : " + this.c);
                     if (this.b && this.channelInfo.d() == 141) {
                         EncSpeex.InitEncoder(8);
                         bInitSpeexEnc = true;
@@ -2569,7 +2569,7 @@ public class Camera {
                     }
 
                     if (this.d >= 0) {
-                        IOTCAPIs.IOTC_Session_Channel_OFF(Camera.this.h, this.d);
+                        IOTCAPIs.IOTC_Session_Channel_OFF(Camera.this.nIOTCSessionID, this.d);
                     }
 
                     this.c = -1;
@@ -2608,7 +2608,7 @@ public class Camera {
         public void run() {
             this.b = true;
 
-            while(this.b && (Camera.this.h < 0 || this.channelInfo.getAvIndex() < 0)) {
+            while(this.b && (Camera.this.nIOTCSessionID < 0 || this.channelInfo.getAvIndex() < 0)) {
                 try {
                     synchronized(Camera.this.c) {
                         Camera.this.c.wait(1000L);
@@ -2618,14 +2618,14 @@ public class Camera {
                 }
             }
 
-            if (this.b && Camera.this.h >= 0 && this.channelInfo.getAvIndex() >= 0) {
+            if (this.b && Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0) {
                 int nDelayTime_ms = 0;
                 AVAPIs.avSendIOCtrl(this.channelInfo.getAvIndex(), 255, Packet.intToByteArray_Little(nDelayTime_ms), 4);
             }
 
             while(true) {
                 while(this.b) {
-                    if (Camera.this.h >= 0 && this.channelInfo.getAvIndex() >= 0 && !this.channelInfo.ioCtrlQueue.isEmpty()) {
+                    if (Camera.this.nIOTCSessionID >= 0 && this.channelInfo.getAvIndex() >= 0 && !this.channelInfo.ioCtrlQueue.isEmpty()) {
                         Camera.IOCtrlQueue.IOCtrlSet data = this.channelInfo.ioCtrlQueue.getIOCtrlSet();
                         if (this.b && data != null) {
                             int ret = AVAPIs.avSendIOCtrl(this.channelInfo.getAvIndex(), data.IOCtrlType, data.IOCtrlBuf, data.IOCtrlBuf.length);
@@ -2662,9 +2662,9 @@ public class Camera {
 
         public void a() {
             this.b = false;
-            if (Camera.this.h >= 0) {
-                MLog.i("IOTCamera", "avClientExit(" + Camera.this.h + ", " + this.channelInfo.getChannel() + ")");
-                AVAPIs.avClientExit(Camera.this.h, this.channelInfo.getChannel());
+            if (Camera.this.nIOTCSessionID >= 0) {
+                MLog.i("IOTCamera", "avClientExit(" + Camera.this.nIOTCSessionID + ", " + this.channelInfo.getChannel() + ")");
+                AVAPIs.avClientExit(Camera.this.nIOTCSessionID, this.channelInfo.getChannel());
             }
 
             Object var1 = this.d;
@@ -2679,7 +2679,7 @@ public class Camera {
 
             label112:
             while(this.b) {
-                if (Camera.this.h < 0) {
+                if (Camera.this.nIOTCSessionID < 0) {
                     try {
                         synchronized(Camera.this.c) {
                             Camera.this.c.wait(100L);
@@ -2698,12 +2698,12 @@ public class Camera {
                     nServType[0] = -1L;
                     int avIndex;
                     if (Camera.this.getSessionMode() == 2) {
-                        avIndex = AVAPIs.avClientStart(Camera.this.h, this.channelInfo.getView_acc(), this.channelInfo.getView_pwd(), 30L, nServType, this.channelInfo.getChannel());
+                        avIndex = AVAPIs.avClientStart(Camera.this.nIOTCSessionID, this.channelInfo.getView_acc(), this.channelInfo.getView_pwd(), 30L, nServType, this.channelInfo.getChannel());
                     } else {
-                        avIndex = AVAPIs.avClientStart2(Camera.this.h, this.channelInfo.getView_acc(), this.channelInfo.getView_pwd(), 30L, nServType, this.channelInfo.getChannel(), mResend);
+                        avIndex = AVAPIs.avClientStart2(Camera.this.nIOTCSessionID, this.channelInfo.getView_acc(), this.channelInfo.getView_pwd(), 30L, nServType, this.channelInfo.getChannel(), mResend);
                     }
 
-                    MLog.i("IOTCamera", "avClientStart(" + this.channelInfo.getChannel() + ", " + this.channelInfo.getView_acc() + ", " + this.channelInfo.getView_pwd() + ") in Session(" + Camera.this.h + ") returns " + avIndex);
+                    MLog.i("IOTCamera", "avClientStart(" + this.channelInfo.getChannel() + ", " + this.channelInfo.getView_acc() + ", " + this.channelInfo.getView_pwd() + ") in Session(" + Camera.this.nIOTCSessionID + ") returns " + avIndex);
                     long servType = nServType[0];
                     int ix;
                     IRegisterIOTCListener listenerx;
