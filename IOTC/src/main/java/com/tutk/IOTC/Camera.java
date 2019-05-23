@@ -2326,7 +2326,8 @@ public class Camera {
                                 var10000.r = 0;
                             }
 
-                            int nReadSizex = AVAPIs.avRecvFrameData2(this.channelInfo.getAvIndex(), buf, buf.length, outBufSize, outFrmSize, pFrmInfoBuf, pFrmInfoBuf.length, outFrmInfoBufSize, pFrmNo);
+                            int nReadSizex = AVAPIs.avRecvFrameData2(this.channelInfo.getAvIndex(), buf, buf.length, outBufSize,
+                                    outFrmSize, pFrmInfoBuf, pFrmInfoBuf.length, outFrmInfoBufSize, pFrmNo);
                             Camera.this.r = Camera.this.r + 1;
                             short nCodecIdx;
                             byte[] frameData;

@@ -31,8 +31,8 @@
       <file leaf-file-name="Camera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="2667" column="17" lean-forward="true" selection-start-line="2667" selection-start-column="17" selection-end-line="2667" selection-end-column="17" />
+            <state relative-caret-position="511">
+              <caret line="2250" column="35" lean-forward="true" selection-start-line="2250" selection-start-column="35" selection-end-line="2250" selection-end-column="35" />
               <folding>
                 <element signature="e#6431#6432#0" expanded="true" />
                 <element signature="e#6469#6470#0" expanded="true" />
@@ -54,55 +54,12 @@
                 <element signature="e#90997#90998#0" expanded="true" />
                 <element signature="e#91036#91037#0" expanded="true" />
                 <element signature="e#91082#91083#0" expanded="true" />
-                <element signature="e#102795#102796#0" expanded="true" />
-                <element signature="e#102840#102841#0" expanded="true" />
-                <element signature="e#112303#112304#0" expanded="true" />
-                <element signature="e#112353#112354#0" expanded="true" />
-                <element signature="e#115178#115179#0" expanded="true" />
-                <element signature="e#115228#115229#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AVIOCTRLDEFs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVIOCTRLDEFs.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="17" column="57" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IOTCAPIs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="15" column="60" lean-forward="true" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AVFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1099">
-              <caret line="57" column="17" lean-forward="false" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-              <folding>
-                <element signature="e#4104#4105#0" expanded="true" />
-                <element signature="e#4141#4142#0" expanded="true" />
-                <element signature="e#4175#4176#0" expanded="true" />
-                <element signature="e#4212#4213#0" expanded="true" />
-                <element signature="e#4245#4246#0" expanded="true" />
-                <element signature="e#4280#4281#0" expanded="true" />
-                <element signature="e#4313#4314#0" expanded="true" />
-                <element signature="e#4350#4351#0" expanded="true" />
-                <element signature="e#4384#4385#0" expanded="true" />
-                <element signature="e#4422#4423#0" expanded="true" />
-                <element signature="e#4457#4458#0" expanded="true" />
-                <element signature="e#4496#4497#0" expanded="true" />
+                <element signature="e#102831#102832#0" expanded="true" />
+                <element signature="e#102876#102877#0" expanded="true" />
+                <element signature="e#112339#112340#0" expanded="true" />
+                <element signature="e#112389#112390#0" expanded="true" />
+                <element signature="e#115214#115215#0" expanded="true" />
+                <element signature="e#115264#115265#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,8 +68,18 @@
       <file leaf-file-name="AVAPIs.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVAPIs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="29" column="60" lean-forward="true" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+            <state relative-caret-position="290">
+              <caret line="93" column="29" lean-forward="false" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Packet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Packet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="567">
+              <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -129,8 +96,8 @@
       <find>this.a</find>
       <find>audioThr</find>
       <find>audioThread</find>
-      <find>849</find>
       <find>255</find>
+      <find>849</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -3208,6 +3175,13 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
+            <path>
+              <item name="IOTCCamera" type="1abcf292:AndroidViewProjectNode" />
+              <item name="IOTC" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="IOTC" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -3439,12 +3413,12 @@
             <element signature="e#90997#90998#0" expanded="true" />
             <element signature="e#91036#91037#0" expanded="true" />
             <element signature="e#91082#91083#0" expanded="true" />
-            <element signature="e#102795#102796#0" expanded="true" />
-            <element signature="e#102840#102841#0" expanded="true" />
-            <element signature="e#112303#112304#0" expanded="true" />
-            <element signature="e#112353#112354#0" expanded="true" />
-            <element signature="e#115178#115179#0" expanded="true" />
-            <element signature="e#115228#115229#0" expanded="true" />
+            <element signature="e#102831#102832#0" expanded="true" />
+            <element signature="e#102876#102877#0" expanded="true" />
+            <element signature="e#112339#112340#0" expanded="true" />
+            <element signature="e#112389#112390#0" expanded="true" />
+            <element signature="e#115214#115215#0" expanded="true" />
+            <element signature="e#115264#115265#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3462,13 +3436,6 @@
         <state relative-caret-position="-13429">
           <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Packet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-874">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -3551,10 +3518,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVAPIs.java">
+    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="29" column="60" lean-forward="true" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
+        <state relative-caret-position="243">
+          <caret line="15" column="60" lean-forward="true" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -3567,18 +3534,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
+    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Packet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="15" column="60" lean-forward="true" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+        <state relative-caret-position="567">
+          <caret line="21" column="54" lean-forward="true" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVAPIs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="93" column="29" lean-forward="false" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="2667" column="17" lean-forward="true" selection-start-line="2667" selection-start-column="17" selection-end-line="2667" selection-end-column="17" />
+        <state relative-caret-position="511">
+          <caret line="2250" column="35" lean-forward="true" selection-start-line="2250" selection-start-column="35" selection-end-line="2250" selection-end-column="35" />
           <folding>
             <element signature="e#6431#6432#0" expanded="true" />
             <element signature="e#6469#6470#0" expanded="true" />
@@ -3600,12 +3575,12 @@
             <element signature="e#90997#90998#0" expanded="true" />
             <element signature="e#91036#91037#0" expanded="true" />
             <element signature="e#91082#91083#0" expanded="true" />
-            <element signature="e#102795#102796#0" expanded="true" />
-            <element signature="e#102840#102841#0" expanded="true" />
-            <element signature="e#112303#112304#0" expanded="true" />
-            <element signature="e#112353#112354#0" expanded="true" />
-            <element signature="e#115178#115179#0" expanded="true" />
-            <element signature="e#115228#115229#0" expanded="true" />
+            <element signature="e#102831#102832#0" expanded="true" />
+            <element signature="e#102876#102877#0" expanded="true" />
+            <element signature="e#112339#112340#0" expanded="true" />
+            <element signature="e#112389#112390#0" expanded="true" />
+            <element signature="e#115214#115215#0" expanded="true" />
+            <element signature="e#115264#115265#0" expanded="true" />
           </folding>
         </state>
       </provider>
