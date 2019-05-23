@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="221c78bc-a626-4b19-b72a-c32dfcb5d480" name="Default" comment="" />
+    <list default="true" readonly="true" id="91923b35-707f-4af3-bbb1-bd4b3cfcdacc" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/.gradle/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/attr/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/check-manifest/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/incremental/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/lint/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/manifests/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/packaged-aidl/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/packaged_res/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/public_res/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/res/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/rs/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/symbols/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/outputs/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/tmp/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/classes/debug/" />
+    <ignored path="$PROJECT_DIR$/IOTC/build/intermediates/classes/test/debug/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/blame/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/check-manifest/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/incremental/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/lint/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/manifests/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/prebuild/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/res/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/rs/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/splits-support/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/symbols/" />
+    <ignored path="$PROJECT_DIR$/app/build/outputs/" />
+    <ignored path="$PROJECT_DIR$/app/build/tmp/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/classes/debug/" />
+    <ignored path="$PROJECT_DIR$/app/build/intermediates/classes/test/debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,78 +45,29 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view />
-      </state>
-    </system>
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+    <leaf>
       <file leaf-file-name="Camera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="49" column="64" lean-forward="false" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
+            <state relative-caret-position="295">
+              <caret line="903" column="26" lean-forward="true" selection-start-line="903" selection-start-column="26" selection-end-line="903" selection-end-column="26" />
               <folding>
-                <element signature="e#3244#3245#0" expanded="true" />
-                <element signature="e#3276#3277#0" expanded="true" />
-                <element signature="e#3340#3341#0" expanded="true" />
-                <element signature="e#3379#3380#0" expanded="true" />
-                <element signature="e#4939#4940#0" expanded="true" />
-                <element signature="e#4977#4978#0" expanded="true" />
-                <element signature="e#6283#6284#0" expanded="true" />
-                <element signature="e#6330#6331#0" expanded="true" />
-                <element signature="e#36887#36888#0" expanded="true" />
-                <element signature="e#36930#36931#0" expanded="true" />
-                <element signature="e#36978#36979#0" expanded="true" />
-                <element signature="e#37021#37022#0" expanded="true" />
-                <element signature="e#37077#37078#0" expanded="true" />
-                <element signature="e#37119#37120#0" expanded="true" />
-                <element signature="e#37172#37173#0" expanded="true" />
-                <element signature="e#37219#37220#0" expanded="true" />
-                <element signature="e#37258#37259#0" expanded="true" />
-                <element signature="e#37299#37300#0" expanded="true" />
-                <element signature="e#37348#37349#0" expanded="true" />
-                <element signature="e#37390#37391#0" expanded="true" />
-                <element signature="e#37618#37619#0" expanded="true" />
-                <element signature="e#37662#37663#0" expanded="true" />
-                <element signature="e#37701#37702#0" expanded="true" />
-                <element signature="e#37745#37746#0" expanded="true" />
-                <element signature="e#37859#37860#0" expanded="true" />
-                <element signature="e#37917#37918#0" expanded="true" />
-                <element signature="e#37966#37967#0" expanded="true" />
-                <element signature="e#38022#38023#0" expanded="true" />
-                <element signature="e#47994#47995#0" expanded="true" />
-                <element signature="e#48032#48033#0" expanded="true" />
-                <element signature="e#52033#52034#0" expanded="true" />
-                <element signature="e#52083#52084#0" expanded="true" />
-                <element signature="e#52110#52111#0" expanded="true" />
-                <element signature="e#52148#52149#0" expanded="true" />
-                <element signature="e#72922#72923#0" expanded="true" />
-                <element signature="e#72972#72973#0" expanded="true" />
-                <element signature="e#79681#79682#0" expanded="true" />
-                <element signature="e#79731#79732#0" expanded="true" />
-                <element signature="e#83002#83003#0" expanded="true" />
-                <element signature="e#83052#83053#0" expanded="true" />
-                <element signature="e#94343#94344#0" expanded="true" />
-                <element signature="e#94388#94389#0" expanded="true" />
-                <element signature="e#102992#102993#0" expanded="true" />
-                <element signature="e#103042#103043#0" expanded="true" />
-                <element signature="e#105756#105757#0" expanded="true" />
-                <element signature="e#105806#105807#0" expanded="true" />
+                <element signature="e#29403#29404#0" expanded="true" />
+                <element signature="e#29450#29451#0" expanded="true" />
+                <element signature="e#43343#43344#0" expanded="true" />
+                <element signature="e#43391#43392#0" expanded="true" />
+                <element signature="e#43448#43449#0" expanded="true" />
+                <element signature="e#43497#43498#0" expanded="true" />
+                <element signature="e#43772#43773#0" expanded="true" />
+                <element signature="e#43816#43817#0" expanded="true" />
+                <element signature="e#43855#43856#0" expanded="true" />
+                <element signature="e#43899#43900#0" expanded="true" />
+                <element signature="e#58900#58901#0" expanded="true" />
+                <element signature="e#58950#58951#0" expanded="true" />
+                <element signature="e#58991#58992#0" expanded="true" />
+                <element signature="e#59037#59038#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IOTCAPIs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2565">
-              <caret line="98" column="41" lean-forward="false" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -94,10 +76,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nReadBytesx</find>
-      <find>this.v</find>
-      <find>Camera.a</find>
-      <find>this.u</find>
+      <find>.a</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -3115,16 +3094,10 @@
     <option name="externalProjectsViewState">
       <projects_view />
     </option>
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
-      </map>
-    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVFrame.java" />
         <option value="$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Camera.java" />
       </list>
     </option>
@@ -3150,9 +3123,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -3171,17 +3144,19 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
+            <path>
+              <item name="IOTCCamera" type="1abcf292:AndroidViewProjectNode" />
+              <item name="IOTC" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="IOTC" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
-    <property name="android.sdk.path" value="E:/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -3340,47 +3315,48 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="221c78bc-a626-4b19-b72a-c32dfcb5d480" name="Default" comment="" />
-      <created>1558504655074</created>
+      <changelist id="91923b35-707f-4af3-bbb1-bd4b3cfcdacc" name="Default" comment="" />
+      <created>1558583609675</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1558504655074</updated>
+      <updated>1558583609675</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -3393,246 +3369,26 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="295">
+          <caret line="903" column="26" lean-forward="true" selection-start-line="903" selection-start-column="26" selection-end-line="903" selection-end-column="26" />
           <folding>
-            <element signature="e#3244#3245#0" expanded="true" />
-            <element signature="e#3276#3277#0" expanded="true" />
-            <element signature="e#3340#3341#0" expanded="true" />
-            <element signature="e#3379#3380#0" expanded="true" />
-            <element signature="e#4939#4940#0" expanded="true" />
-            <element signature="e#4977#4978#0" expanded="true" />
-            <element signature="e#6283#6284#0" expanded="true" />
-            <element signature="e#6330#6331#0" expanded="true" />
-            <element signature="e#36887#36888#0" expanded="true" />
-            <element signature="e#36930#36931#0" expanded="true" />
-            <element signature="e#36978#36979#0" expanded="true" />
-            <element signature="e#37021#37022#0" expanded="true" />
-            <element signature="e#37077#37078#0" expanded="true" />
-            <element signature="e#37119#37120#0" expanded="true" />
-            <element signature="e#37172#37173#0" expanded="true" />
-            <element signature="e#37219#37220#0" expanded="true" />
-            <element signature="e#37258#37259#0" expanded="true" />
-            <element signature="e#37299#37300#0" expanded="true" />
-            <element signature="e#37348#37349#0" expanded="true" />
-            <element signature="e#37390#37391#0" expanded="true" />
-            <element signature="e#37618#37619#0" expanded="true" />
-            <element signature="e#37662#37663#0" expanded="true" />
-            <element signature="e#37701#37702#0" expanded="true" />
-            <element signature="e#37745#37746#0" expanded="true" />
-            <element signature="e#37859#37860#0" expanded="true" />
-            <element signature="e#37917#37918#0" expanded="true" />
-            <element signature="e#37966#37967#0" expanded="true" />
-            <element signature="e#38022#38023#0" expanded="true" />
-            <element signature="e#47994#47995#0" expanded="true" />
-            <element signature="e#48032#48033#0" expanded="true" />
-            <element signature="e#52033#52034#0" expanded="true" />
-            <element signature="e#52083#52084#0" expanded="true" />
-            <element signature="e#52110#52111#0" expanded="true" />
-            <element signature="e#52148#52149#0" expanded="true" />
-            <element signature="e#72922#72923#0" expanded="true" />
-            <element signature="e#72972#72973#0" expanded="true" />
-            <element signature="e#79681#79682#0" expanded="true" />
-            <element signature="e#79731#79732#0" expanded="true" />
-            <element signature="e#83002#83003#0" expanded="true" />
-            <element signature="e#83052#83053#0" expanded="true" />
-            <element signature="e#94343#94344#0" expanded="true" />
-            <element signature="e#94388#94389#0" expanded="true" />
-            <element signature="e#102992#102993#0" expanded="true" />
-            <element signature="e#103042#103043#0" expanded="true" />
-            <element signature="e#105756#105757#0" expanded="true" />
-            <element signature="e#105806#105807#0" expanded="true" />
+            <element signature="e#29403#29404#0" expanded="true" />
+            <element signature="e#29450#29451#0" expanded="true" />
+            <element signature="e#43343#43344#0" expanded="true" />
+            <element signature="e#43391#43392#0" expanded="true" />
+            <element signature="e#43448#43449#0" expanded="true" />
+            <element signature="e#43497#43498#0" expanded="true" />
+            <element signature="e#43772#43773#0" expanded="true" />
+            <element signature="e#43816#43817#0" expanded="true" />
+            <element signature="e#43855#43856#0" expanded="true" />
+            <element signature="e#43899#43900#0" expanded="true" />
+            <element signature="e#58900#58901#0" expanded="true" />
+            <element signature="e#58950#58951#0" expanded="true" />
+            <element signature="e#58991#58992#0" expanded="true" />
+            <element signature="e#59037#59038#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2565">
-          <caret line="98" column="41" lean-forward="true" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVIOCTRLDEFs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="355" column="31" lean-forward="true" selection-start-line="355" selection-start-column="31" selection-end-line="355" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Monitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13429">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/MRegisterMonitiorListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Packet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-874">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/RDCTRLDEFs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/RDTAPIs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-748">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/st_LanSearchInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVAPIs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="55" column="52" lean-forward="true" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IRegisterIOTCListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="66" column="29" lean-forward="false" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
-          <folding>
-            <element signature="e#4104#4105#0" expanded="true" />
-            <element signature="e#4141#4142#0" expanded="true" />
-            <element signature="e#4175#4176#0" expanded="true" />
-            <element signature="e#4212#4213#0" expanded="true" />
-            <element signature="e#4245#4246#0" expanded="true" />
-            <element signature="e#4280#4281#0" expanded="true" />
-            <element signature="e#4313#4314#0" expanded="true" />
-            <element signature="e#4350#4351#0" expanded="true" />
-            <element signature="e#4384#4385#0" expanded="true" />
-            <element signature="e#4422#4423#0" expanded="true" />
-            <element signature="e#4457#4458#0" expanded="true" />
-            <element signature="e#4496#4497#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVFrameContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="980">
-          <caret line="65" column="35" lean-forward="false" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
-          <folding>
-            <element signature="e#423#424#0" expanded="true" />
-            <element signature="e#462#463#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2565">
-          <caret line="98" column="41" lean-forward="false" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="49" column="64" lean-forward="false" selection-start-line="49" selection-start-column="64" selection-end-line="49" selection-end-column="64" />
-          <folding>
-            <element signature="e#3244#3245#0" expanded="true" />
-            <element signature="e#3276#3277#0" expanded="true" />
-            <element signature="e#3340#3341#0" expanded="true" />
-            <element signature="e#3379#3380#0" expanded="true" />
-            <element signature="e#4939#4940#0" expanded="true" />
-            <element signature="e#4977#4978#0" expanded="true" />
-            <element signature="e#6283#6284#0" expanded="true" />
-            <element signature="e#6330#6331#0" expanded="true" />
-            <element signature="e#36887#36888#0" expanded="true" />
-            <element signature="e#36930#36931#0" expanded="true" />
-            <element signature="e#36978#36979#0" expanded="true" />
-            <element signature="e#37021#37022#0" expanded="true" />
-            <element signature="e#37077#37078#0" expanded="true" />
-            <element signature="e#37119#37120#0" expanded="true" />
-            <element signature="e#37172#37173#0" expanded="true" />
-            <element signature="e#37219#37220#0" expanded="true" />
-            <element signature="e#37258#37259#0" expanded="true" />
-            <element signature="e#37299#37300#0" expanded="true" />
-            <element signature="e#37348#37349#0" expanded="true" />
-            <element signature="e#37390#37391#0" expanded="true" />
-            <element signature="e#37618#37619#0" expanded="true" />
-            <element signature="e#37662#37663#0" expanded="true" />
-            <element signature="e#37701#37702#0" expanded="true" />
-            <element signature="e#37745#37746#0" expanded="true" />
-            <element signature="e#37859#37860#0" expanded="true" />
-            <element signature="e#37917#37918#0" expanded="true" />
-            <element signature="e#37966#37967#0" expanded="true" />
-            <element signature="e#38022#38023#0" expanded="true" />
-            <element signature="e#47994#47995#0" expanded="true" />
-            <element signature="e#48032#48033#0" expanded="true" />
-            <element signature="e#52033#52034#0" expanded="true" />
-            <element signature="e#52083#52084#0" expanded="true" />
-            <element signature="e#52110#52111#0" expanded="true" />
-            <element signature="e#52148#52149#0" expanded="true" />
-            <element signature="e#72922#72923#0" expanded="true" />
-            <element signature="e#72972#72973#0" expanded="true" />
-            <element signature="e#79681#79682#0" expanded="true" />
-            <element signature="e#79731#79732#0" expanded="true" />
-            <element signature="e#83002#83003#0" expanded="true" />
-            <element signature="e#83052#83053#0" expanded="true" />
-            <element signature="e#94343#94344#0" expanded="true" />
-            <element signature="e#94388#94389#0" expanded="true" />
-            <element signature="e#102992#102993#0" expanded="true" />
-            <element signature="e#103042#103043#0" expanded="true" />
-            <element signature="e#105756#105757#0" expanded="true" />
-            <element signature="e#105806#105807#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>Android API 9 Platform</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
