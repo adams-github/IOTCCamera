@@ -31,35 +31,35 @@
       <file leaf-file-name="Camera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="111" column="21" lean-forward="true" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="21" />
+            <state relative-caret-position="538">
+              <caret line="2667" column="17" lean-forward="true" selection-start-line="2667" selection-start-column="17" selection-end-line="2667" selection-end-column="17" />
               <folding>
                 <element signature="e#6431#6432#0" expanded="true" />
                 <element signature="e#6469#6470#0" expanded="true" />
-                <element signature="e#49379#49380#0" expanded="true" />
-                <element signature="e#49420#49421#0" expanded="true" />
-                <element signature="e#54443#54444#0" expanded="true" />
-                <element signature="e#54493#54494#0" expanded="true" />
-                <element signature="e#58847#58848#0" expanded="true" />
-                <element signature="e#58897#58898#0" expanded="true" />
-                <element signature="e#58938#58939#0" expanded="true" />
-                <element signature="e#58984#58985#0" expanded="true" />
-                <element signature="e#80152#80153#0" expanded="true" />
-                <element signature="e#80196#80197#0" expanded="true" />
-                <element signature="e#87454#87455#0" expanded="true" />
-                <element signature="e#87504#87505#0" expanded="true" />
-                <element signature="e#87544#87545#0" expanded="true" />
-                <element signature="e#87590#87591#0" expanded="true" />
-                <element signature="e#90865#90866#0" expanded="true" />
-                <element signature="e#90915#90916#0" expanded="true" />
-                <element signature="e#90954#90955#0" expanded="true" />
-                <element signature="e#91000#91001#0" expanded="true" />
-                <element signature="e#102689#102690#0" expanded="true" />
-                <element signature="e#102734#102735#0" expanded="true" />
-                <element signature="e#111899#111900#0" expanded="true" />
-                <element signature="e#111949#111950#0" expanded="true" />
-                <element signature="e#114758#114759#0" expanded="true" />
-                <element signature="e#114808#114809#0" expanded="true" />
+                <element signature="e#49386#49387#0" expanded="true" />
+                <element signature="e#49434#49435#0" expanded="true" />
+                <element signature="e#54481#54482#0" expanded="true" />
+                <element signature="e#54531#54532#0" expanded="true" />
+                <element signature="e#58905#58906#0" expanded="true" />
+                <element signature="e#58955#58956#0" expanded="true" />
+                <element signature="e#58996#58997#0" expanded="true" />
+                <element signature="e#59042#59043#0" expanded="true" />
+                <element signature="e#80210#80211#0" expanded="true" />
+                <element signature="e#80254#80255#0" expanded="true" />
+                <element signature="e#87520#87521#0" expanded="true" />
+                <element signature="e#87570#87571#0" expanded="true" />
+                <element signature="e#87610#87611#0" expanded="true" />
+                <element signature="e#87656#87657#0" expanded="true" />
+                <element signature="e#90947#90948#0" expanded="true" />
+                <element signature="e#90997#90998#0" expanded="true" />
+                <element signature="e#91036#91037#0" expanded="true" />
+                <element signature="e#91082#91083#0" expanded="true" />
+                <element signature="e#102795#102796#0" expanded="true" />
+                <element signature="e#102840#102841#0" expanded="true" />
+                <element signature="e#112303#112304#0" expanded="true" />
+                <element signature="e#112353#112354#0" expanded="true" />
+                <element signature="e#115178#115179#0" expanded="true" />
+                <element signature="e#115228#115229#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,8 +78,8 @@
       <file leaf-file-name="IOTCAPIs.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
+            <state relative-caret-position="243">
+              <caret line="15" column="60" lean-forward="true" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -129,8 +129,8 @@
       <find>this.a</find>
       <find>audioThr</find>
       <find>audioThread</find>
-      <find>255</find>
       <find>849</find>
+      <find>255</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -3208,13 +3208,6 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
-            <path>
-              <item name="IOTCCamera" type="1abcf292:AndroidViewProjectNode" />
-              <item name="IOTC" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="IOTC" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -3428,30 +3421,30 @@
           <folding>
             <element signature="e#6431#6432#0" expanded="true" />
             <element signature="e#6469#6470#0" expanded="true" />
-            <element signature="e#49379#49380#0" expanded="true" />
-            <element signature="e#49420#49421#0" expanded="true" />
-            <element signature="e#54443#54444#0" expanded="true" />
-            <element signature="e#54493#54494#0" expanded="true" />
-            <element signature="e#58847#58848#0" expanded="true" />
-            <element signature="e#58897#58898#0" expanded="true" />
-            <element signature="e#58938#58939#0" expanded="true" />
-            <element signature="e#58984#58985#0" expanded="true" />
-            <element signature="e#80152#80153#0" expanded="true" />
-            <element signature="e#80196#80197#0" expanded="true" />
-            <element signature="e#87454#87455#0" expanded="true" />
-            <element signature="e#87504#87505#0" expanded="true" />
-            <element signature="e#87544#87545#0" expanded="true" />
-            <element signature="e#87590#87591#0" expanded="true" />
-            <element signature="e#90865#90866#0" expanded="true" />
-            <element signature="e#90915#90916#0" expanded="true" />
-            <element signature="e#90954#90955#0" expanded="true" />
-            <element signature="e#91000#91001#0" expanded="true" />
-            <element signature="e#102689#102690#0" expanded="true" />
-            <element signature="e#102734#102735#0" expanded="true" />
-            <element signature="e#111899#111900#0" expanded="true" />
-            <element signature="e#111949#111950#0" expanded="true" />
-            <element signature="e#114758#114759#0" expanded="true" />
-            <element signature="e#114808#114809#0" expanded="true" />
+            <element signature="e#49386#49387#0" expanded="true" />
+            <element signature="e#49434#49435#0" expanded="true" />
+            <element signature="e#54481#54482#0" expanded="true" />
+            <element signature="e#54531#54532#0" expanded="true" />
+            <element signature="e#58905#58906#0" expanded="true" />
+            <element signature="e#58955#58956#0" expanded="true" />
+            <element signature="e#58996#58997#0" expanded="true" />
+            <element signature="e#59042#59043#0" expanded="true" />
+            <element signature="e#80210#80211#0" expanded="true" />
+            <element signature="e#80254#80255#0" expanded="true" />
+            <element signature="e#87520#87521#0" expanded="true" />
+            <element signature="e#87570#87571#0" expanded="true" />
+            <element signature="e#87610#87611#0" expanded="true" />
+            <element signature="e#87656#87657#0" expanded="true" />
+            <element signature="e#90947#90948#0" expanded="true" />
+            <element signature="e#90997#90998#0" expanded="true" />
+            <element signature="e#91036#91037#0" expanded="true" />
+            <element signature="e#91082#91083#0" expanded="true" />
+            <element signature="e#102795#102796#0" expanded="true" />
+            <element signature="e#102840#102841#0" expanded="true" />
+            <element signature="e#112303#112304#0" expanded="true" />
+            <element signature="e#112353#112354#0" expanded="true" />
+            <element signature="e#115178#115179#0" expanded="true" />
+            <element signature="e#115228#115229#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3521,14 +3514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/AVFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1099">
@@ -3582,37 +3567,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/IOTCAPIs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="15" column="60" lean-forward="true" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/IOTC/src/main/java/com/tutk/IOTC/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="111" column="21" lean-forward="true" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="21" />
+        <state relative-caret-position="538">
+          <caret line="2667" column="17" lean-forward="true" selection-start-line="2667" selection-start-column="17" selection-end-line="2667" selection-end-column="17" />
           <folding>
             <element signature="e#6431#6432#0" expanded="true" />
             <element signature="e#6469#6470#0" expanded="true" />
-            <element signature="e#49379#49380#0" expanded="true" />
-            <element signature="e#49420#49421#0" expanded="true" />
-            <element signature="e#54443#54444#0" expanded="true" />
-            <element signature="e#54493#54494#0" expanded="true" />
-            <element signature="e#58847#58848#0" expanded="true" />
-            <element signature="e#58897#58898#0" expanded="true" />
-            <element signature="e#58938#58939#0" expanded="true" />
-            <element signature="e#58984#58985#0" expanded="true" />
-            <element signature="e#80152#80153#0" expanded="true" />
-            <element signature="e#80196#80197#0" expanded="true" />
-            <element signature="e#87454#87455#0" expanded="true" />
-            <element signature="e#87504#87505#0" expanded="true" />
-            <element signature="e#87544#87545#0" expanded="true" />
-            <element signature="e#87590#87591#0" expanded="true" />
-            <element signature="e#90865#90866#0" expanded="true" />
-            <element signature="e#90915#90916#0" expanded="true" />
-            <element signature="e#90954#90955#0" expanded="true" />
-            <element signature="e#91000#91001#0" expanded="true" />
-            <element signature="e#102689#102690#0" expanded="true" />
-            <element signature="e#102734#102735#0" expanded="true" />
-            <element signature="e#111899#111900#0" expanded="true" />
-            <element signature="e#111949#111950#0" expanded="true" />
-            <element signature="e#114758#114759#0" expanded="true" />
-            <element signature="e#114808#114809#0" expanded="true" />
+            <element signature="e#49386#49387#0" expanded="true" />
+            <element signature="e#49434#49435#0" expanded="true" />
+            <element signature="e#54481#54482#0" expanded="true" />
+            <element signature="e#54531#54532#0" expanded="true" />
+            <element signature="e#58905#58906#0" expanded="true" />
+            <element signature="e#58955#58956#0" expanded="true" />
+            <element signature="e#58996#58997#0" expanded="true" />
+            <element signature="e#59042#59043#0" expanded="true" />
+            <element signature="e#80210#80211#0" expanded="true" />
+            <element signature="e#80254#80255#0" expanded="true" />
+            <element signature="e#87520#87521#0" expanded="true" />
+            <element signature="e#87570#87571#0" expanded="true" />
+            <element signature="e#87610#87611#0" expanded="true" />
+            <element signature="e#87656#87657#0" expanded="true" />
+            <element signature="e#90947#90948#0" expanded="true" />
+            <element signature="e#90997#90998#0" expanded="true" />
+            <element signature="e#91036#91037#0" expanded="true" />
+            <element signature="e#91082#91083#0" expanded="true" />
+            <element signature="e#102795#102796#0" expanded="true" />
+            <element signature="e#102840#102841#0" expanded="true" />
+            <element signature="e#112303#112304#0" expanded="true" />
+            <element signature="e#112353#112354#0" expanded="true" />
+            <element signature="e#115178#115179#0" expanded="true" />
+            <element signature="e#115228#115229#0" expanded="true" />
           </folding>
         </state>
       </provider>
