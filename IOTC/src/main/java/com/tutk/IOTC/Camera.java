@@ -59,6 +59,12 @@ import static com.tutk.IOTC.AVIOCTRLDEFs.IOTYPE_USER_IPCAM_AUDIOSTOP;
 import static com.tutk.IOTC.AVIOCTRLDEFs.IOTYPE_USER_IPCAM_SPEAKERSTOP;
 import static com.tutk.IOTC.AVIOCTRLDEFs.IOTYPE_USER_IPCAM_START;
 import static com.tutk.IOTC.AVIOCTRLDEFs.IOTYPE_USER_IPCAM_STOP;
+import static com.tutk.IOTC.AVAPIs.AV_ER_DATA_NOREADY;
+import static com.tutk.IOTC.AVAPIs.AV_ER_LOSED_THIS_FRAME;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_AUDIO_ADPCM;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_VIDEO_H264;
+import static com.tutk.IOTC.AVFrame.MEDIA_CODEC_VIDEO_MPEG4;
+
 
 public class Camera {
     private static volatile int isCameraInit = 0;
@@ -1727,7 +1733,7 @@ public class Camera {
                                         bInitMp4Record = false;
                                         mp4StartFlag = false;
                                     }
-                                } else if (avFrame.getCodecId() == 76) {
+                                } else if (avFrame.getCodecId() == MEDIA_CODEC_VIDEO_MPEG4) {
                                     if (!bInitMpeg4) {
                                         w = (avFrame.frmData[23] & 15) << 9 | (avFrame.frmData[24] & 255) << 1 | (avFrame.frmData[25] & 128) >> 7;
                                         i = (avFrame.frmData[25] & 63) << 7 | (avFrame.frmData[26] & 254) >> 1;
@@ -1747,7 +1753,7 @@ public class Camera {
                                 if (out_size[0] > 0 && out_width[0] > 0 && out_height[0] > 0) {
                                     videoWidth = out_width[0];
                                     videoHeight = out_height[0];
-                                    if (mEnableDither && avFrame.getCodecId() != 76) {
+                                    if (mEnableDither && avFrame.getCodecId() != MEDIA_CODEC_VIDEO_MPEG4) {
                                         bmp = Bitmap.createBitmap(videoWidth, videoHeight, Config.ARGB_8888);
                                     } else {
                                         bmp = Bitmap.createBitmap(videoWidth, videoHeight, Config.RGB_565);
